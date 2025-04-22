@@ -32,7 +32,10 @@
               </div>
             </td>
             <td class="px-6 py-4 whitespace-nowrap">
-              <span class={status_color(event.status) |> then(&"px-2 inline-flex text-xs leading-5 font-semibold rounded-full #{&1}")}>
+              <span class={[
+                "px-2 inline-flex text-xs leading-5 font-semibold rounded-full",
+                status_color(event.status)
+              ]}>
                 <%= event.status %>
               </span>
             </td>
