@@ -26,7 +26,7 @@ defmodule Apelab.Events.Event do
 
   def changeset(event, attrs) do
     event
-    |> cast(attrs, [:title, :description, :start_date, :end_date, :location, :max_participants, 
+    |> cast(attrs, [:title, :description, :start_date, :end_date, :location, :max_participants,
                     :status, :tags, :image_url, :latitude, :longitude, :is_public, :organizer_id])
     |> validate_required([:title, :description, :start_date, :end_date, :location, :organizer_id])
     |> validate_number(:max_participants, greater_than: 0)
@@ -46,4 +46,4 @@ defmodule Apelab.Events.Event do
         changeset
     end
   end
-end 
+end
