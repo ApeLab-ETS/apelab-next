@@ -76,6 +76,10 @@ defmodule Apelab.MixProject do
       {:sweet_xml, "~> 0.7"},
       {:icalendar, "~> 1.1"},
       {:timex, "~> 3.7"},
+      # Azure B2C dependencies
+      {:oauth2, "~> 2.0"},
+      {:joken, "~> 2.5"},
+      {:httpoison, "~> 2.0"},
       # Analisi statica e qualità del codice
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false}

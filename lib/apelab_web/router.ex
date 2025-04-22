@@ -20,6 +20,10 @@ defmodule ApelabWeb.Router do
     plug :ensure_admin_authenticated
   end
 
+  pipeline :auth do
+    plug :ensure_authenticated
+  end
+
   scope "/", ApelabWeb do
     pipe_through :browser
 
@@ -29,9 +33,9 @@ defmodule ApelabWeb.Router do
     get "/events/:id", EventController, :show
     get "/register", UserController, :new
     post "/register", UserController, :create
-    get "/login", SessionController, :new
-    post "/login", SessionController, :create
-    delete "/logout", SessionController, :delete
+    get "/login", AuthController, :login
+    get "/auth/callback", AuthController, :callback
+    delete "/logout", AuthController, :logout
   end
 
   scope "/admin", ApelabWeb.Admin do
@@ -77,6 +81,17 @@ defmodule ApelabWeb.Router do
       conn
       |> Phoenix.Controller.put_flash(:error, "Devi effettuare il login per accedere a questa pagina")
       |> Phoenix.Controller.redirect(to: "/admin/login")
+      |> halt()
+    end
+  end
+
+  defp ensure_authenticated(conn, _opts) do
+    if user_id = get_session(conn, :user_id) do
+      conn
+    else
+      conn
+      |> Phoenix.Controller.put_flash(:error, "Devi effettuare il login per accedere a questa pagina")
+      |> Phoenix.Controller.redirect(to: "/login")
       |> halt()
     end
   end

@@ -34,7 +34,7 @@ config :apelab, Apelab.Mailer, adapter: Swoosh.Adapters.Local
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",
-  apelab: [
+  default: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
@@ -43,8 +43,8 @@ config :esbuild,
 
 # Configure tailwind (the version is required)
 config :tailwind,
-  version: "3.4.3",
-  apelab: [
+  version: "3.3.2",
+  default: [
     args: ~w(
       --config=tailwind.config.js
       --input=css/app.css
@@ -64,3 +64,10 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
+
+# Azure B2C Configuration
+config :apelab,
+  azure_b2c_tenant: System.get_env("AZURE_B2C_TENANT", "your-tenant"),
+  azure_b2c_client_id: System.get_env("AZURE_B2C_CLIENT_ID", "your-client-id"),
+  azure_b2c_client_secret: System.get_env("AZURE_B2C_CLIENT_SECRET", "your-client-secret"),
+  azure_b2c_policy: System.get_env("AZURE_B2C_POLICY", "B2C_1_signupsignin")
