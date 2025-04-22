@@ -1,0 +1,69 @@
+<.simple_form :let={f} for={@event} action={@action}>
+  <.error :if={@event.errors.any?}>
+    <ul>
+      <%= for {msg, _opts} <- @event.errors do %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </.error>
+
+  <div class="space-y-4">
+    <div>
+      <.input field={f[:title]} type="text" label="Titolo" />
+    </div>
+
+    <div>
+      <.input field={f[:description]} type="textarea" label="Descrizione" />
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <.input field={f[:start_date]} type="datetime-local" label="Data di inizio" />
+      </div>
+      <div>
+        <.input field={f[:end_date]} type="datetime-local" label="Data di fine" />
+      </div>
+    </div>
+
+    <div>
+      <.input field={f[:location]} type="text" label="Luogo" />
+    </div>
+
+    <div>
+      <.input field={f[:max_participants]} type="number" label="Numero massimo di partecipanti" />
+    </div>
+
+    <div>
+      <.input field={f[:status]} type="select" label="Stato" options={[
+        {"Pianificato", "planned"},
+        {"Cancellato", "cancelled"},
+        {"Completato", "completed"}
+      ]} />
+    </div>
+
+    <div>
+      <.input field={f[:is_public]} type="checkbox" label="Evento pubblico" />
+    </div>
+
+    <div>
+      <.input field={f[:tags]} type="text" label="Tags (separati da virgola)" />
+    </div>
+
+    <div>
+      <.input field={f[:image_url]} type="text" label="URL immagine" />
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <.input field={f[:latitude]} type="number" label="Latitudine" step="any" />
+      </div>
+      <div>
+        <.input field={f[:longitude]} type="number" label="Longitudine" step="any" />
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6">
+    <.button type="submit" class="w-full">Salva</.button>
+  </div>
+</.simple_form> 

@@ -1,0 +1,61 @@
+<div class="bg-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
+      <h2 class="text-2xl font-bold text-gray-900">Tutti gli Eventi</h2>
+
+      <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
+        <%= for event <- @page.entries do %>
+          <div class="group relative">
+            <div class="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
+              <img src={event.image_url || "https://images.unsplash.com/photo-1492684223066-81342ee5ff30"} alt={event.title} class="h-full w-full object-cover object-center">
+            </div>
+            <h3 class="mt-6 text-sm text-gray-500">
+              <span class="absolute inset-0"></span>
+              <%= Calendar.strftime(event.start_date, "%d %B %Y, %H:%M") %>
+            </h3>
+            <p class="text-base font-semibold text-gray-900"><%= event.title %></p>
+            <p class="mt-2 text-sm text-gray-500"><%= event.location %></p>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="mt-8 flex items-center justify-center">
+        <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+          <%= if @page.page_number > 1 do %>
+            <.link
+              href={~p"/events?page=#{@page.page_number - 1}"}
+              class="relative inline-flex items-center rounded-l-md px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+            >
+              Precedente
+            </.link>
+          <% end %>
+          
+          <%= for page_num <- 1..@page.total_pages do %>
+            <.link
+              href={~p"/events?page=#{page_num}"}
+              class={[
+                "relative inline-flex items-center px-4 py-2 text-sm font-semibold",
+                if page_num == @page.page_number do
+                  "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                else
+                  "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+                end
+              ]}
+            >
+              <%= page_num %>
+            </.link>
+          <% end %>
+
+          <%= if @page.page_number < @page.total_pages do %>
+            <.link
+              href={~p"/events?page=#{@page.page_number + 1}"}
+              class="relative inline-flex items-center rounded-r-md px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+            >
+              Successivo
+            </.link>
+          <% end %>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div> 

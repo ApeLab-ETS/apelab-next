@@ -1,0 +1,24 @@
+{
+  "name": "apelab",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "deploy": "cd .. && mix assets.deploy",
+    "build": "esbuild ../priv/static/assets/app.js --bundle --minify --outfile=../priv/static/assets/app.min.js",
+    "watch": "esbuild ../priv/static/assets/app.js --bundle --watch --outfile=../priv/static/assets/app.min.js"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.1.1",
+    "phoenix": "file:../deps/phoenix",
+    "phoenix_html": "file:../deps/phoenix_html",
+    "phoenix_live_view": "file:../deps/phoenix_live_view",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.17",
+    "esbuild": "^0.20.1",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1"
+  }
+} 

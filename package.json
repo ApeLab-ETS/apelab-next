@@ -1,0 +1,21 @@
+{
+  "name": "apelab",
+  "version": "1.0.0",
+  "description": "ApeLab Events Platform",
+  "license": "MIT",
+  "scripts": {
+    "deploy": "cd assets && yarn install && yarn build",
+    "build": "cd assets && yarn build"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.1.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1"
+  }
+}

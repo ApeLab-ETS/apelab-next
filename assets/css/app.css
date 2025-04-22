@@ -1,0 +1,46 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* This file is for your main application CSS */
+
+/* Custom styles */
+.gradient-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.event-card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:transform hover:scale-105;
+}
+
+.event-card img {
+  @apply w-full h-48 object-cover;
+}
+
+.event-card-content {
+  @apply p-4;
+}
+
+.event-card-title {
+  @apply text-xl font-semibold text-gray-900 mb-2;
+}
+
+.event-card-date {
+  @apply text-sm text-gray-500 mb-2;
+}
+
+.event-card-location {
+  @apply text-sm text-gray-600 mb-2;
+}
+
+.event-card-description {
+  @apply text-gray-700 text-sm;
+}
+
+.btn-primary {
+  @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+}
