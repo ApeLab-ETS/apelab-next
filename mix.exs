@@ -10,7 +10,11 @@ defmodule Apelab.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      releases: releases()
+      releases: releases(),
+      dialyzer: [
+        plt_add_apps: [:mix, :iex, :phoenix_live_view],
+        ignore_warnings: ".dialyzer_ignore.exs"
+      ]
     ]
   end
 
@@ -71,7 +75,10 @@ defmodule Apelab.MixProject do
       {:hackney, "~> 1.18"},
       {:sweet_xml, "~> 0.7"},
       {:icalendar, "~> 1.1"},
-      {:timex, "~> 3.7"}
+      {:timex, "~> 3.7"},
+      # Analisi statica e qualità del codice
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -93,7 +100,8 @@ defmodule Apelab.MixProject do
         "tailwind apelab --minify",
         "esbuild apelab --minify",
         "phx.digest"
-      ]
+      ],
+      "check.all": ["format --check-formatted", "credo", "dialyzer", "test"]
     ]
   end
 

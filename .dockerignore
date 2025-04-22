@@ -1,0 +1,30 @@
+# Git
+.git
+.gitignore
+
+# Elixir
+_build
+deps
+*.ez
+
+# Node
+assets/node_modules
+priv/static
+
+# Environment
+.env
+.env.*
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# IDE
+.vscode
+.idea
+
+# Misc
+README.md
+LICENSE
+*.log 
